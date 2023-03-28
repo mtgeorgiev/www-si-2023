@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8" />
+    <title> My title </title>
+    <link href="./styles/register2.css" rel="stylesheet" />
+</head>
+
+<body>
+    <form class="form" method="POST">
+
+        <input type="email" name="email" required placeholder="Въведете имейл адрес" />
+        <input type="password" name="password" required placeholder="Въведете парола" />
+        <input type="password" name="password-again" required placeholder="Паролата отново" />
+        <label for="birthday"><span>Рождена дата</span></label><input id="birthday" type="date" name="birthday" />
+        <label>Пол</label>
+        <div>
+        <label for="gender-f">Жена</label><input id="gender-f" type="radio" name="gender" value="F" />
+        <label for="gender-m">Мъж</label><input id="gender-m" type="radio" name="gender" value="M" />
+        <label for="gender-o">Друго</label><input id="gender-o" type="radio" name="gender" value="O" />
+        </div>
+        <input class="button" type="submit" value="Изпрати" />
+    </form>
+</body>
+
+</html> 

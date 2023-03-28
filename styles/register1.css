@@ -1,0 +1,56 @@
+*,
+::after,
+::before {
+  margin: 0;
+  box-sizing: border-box;
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+main {
+  height: 100vh;
+}
+form {
+  margin: 5% auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: nowrap;
+  background-color: #f5f5db;
+  width: 35%;
+  max-width: 500px;
+  padding: 20px 10px;
+  border-radius: 30px;
+  box-shadow: 0 0 7px 0px #b8b8b8;
+}
+label {
+  padding: 5px;
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+input,
+select {
+  margin-left: 10px;
+  flex-grow: 1;
+  padding: 5px;
+  border-radius: 10px;
+  border-color: #c5c597;
+  border-width: 2px;
+  border-style: solid;
+}
+input:focus-visible,
+select:focus-visible {
+  border-color: #42422f;
+  outline: 0;
+}
+p {
+  font-size: 22px;
+}
+h1 {
+  font-size: 34px;
+  align-self: center;
+  padding-bottom: 10px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: 200;
+}
