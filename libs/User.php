@@ -1,6 +1,6 @@
 <?php
 
-class User {
+class User implements JsonSerializable {
 
     private $id;
 
@@ -19,6 +19,8 @@ class User {
         $this->id = $id;
         $this->email = $email;
         $this->password = $password;
+        $this->birthdate = $birthdate;
+        $this->gender = $gender;
         $this->settings = new Settings();
     }
 
@@ -27,8 +29,13 @@ class User {
         return $this->email;
     }
 
-    public function toString(): string {
-        return "User with id {$this->id} and email {$this->email}";
+    public function jsonSerialize(): array {
+        return [
+            'id' => $this->id,
+            'email' => $this->email,
+            'birthdate' => $this->birthdate,
+            'gender' => $this->gender,
+        ];
     }
 
     /**

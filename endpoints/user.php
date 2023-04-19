@@ -2,23 +2,21 @@
 
 require "../helpers/bootstrap.php";
 
-$response = '';
+$response = null;
 
 // get single user info (select * from users where id = ?)
 if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['id'])) {
-    $response = UserRequestHandler::getSingleUser($_GET['id'])->toString();
+    $response = UserRequestHandler::getSingleUser($_GET['id']);
 }
 
 // get info for list of users (select * from users)
 elseif ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    foreach (UserRequestHandler::getUserList() as $user) {
-        $response .= '; ' . $user->toString();
-    }
+    $response = UserRequestHandler::getUserList();
 }
 
 // create user (insert into users values)
 elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $response = UserRequestHandler::create($_POST)->toString();
+    $response = UserRequestHandler::create($_POST);
 }
 
 // update/edit/modify user (update users set ? where id = ?)
@@ -31,4 +29,4 @@ elseif ($_SERVER['REQUEST_METHOD'] == 'DELETE' && isset($_GET['id'])) {
 
 }
 
-echo $response;
+echo json_encode($response, JSON_UNESCAPED_UNICODE);

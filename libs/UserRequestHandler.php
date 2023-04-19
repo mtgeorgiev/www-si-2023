@@ -9,13 +9,13 @@ class UserRequestHandler {
         }
 
 
-        return new User($userId, "myemail@abv.bg", "1234", "12/11/2023", "F");
+        return new User($userId, "моят_имейл@abv.bg", "1234", "12/11/2023", "F");
     }
 
     public static function getUserList(): array {
         return [
-            new User("1", "myemail@abv.bg", "1234", "12/11/1980", "M"),
-            new User("2", "otheremail@gmail.bg", "1234", "05/03/2000", "F"),
+            new User("1", "моят_имейл@abv.bg", "1234", "1980-11-12", "M"),
+            new User("2", "otheremail@gmail.bg", "1234", "2000-03-05", "F"),
         ];
     }
 
