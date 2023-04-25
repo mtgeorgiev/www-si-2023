@@ -8,7 +8,9 @@ set_exception_handler(function ($exception) {
 
     if ($exception instanceof BadRequestException) {
         echo "Bad request: " . $exception->getMessage();
-    } else {
+    } elseif ($exception instanceof InternalServiceException) {
+        echo "Internal service error, try again later. Error info: " . $exception->getMessage();
+    }  else {
         echo "Unexpected error occured" . $exception->getMessage();
     }
 

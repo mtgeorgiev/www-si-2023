@@ -2,17 +2,30 @@
 
 require "../helpers/bootstrap.php";
 
-// $user = new User("myemail@abv.bg", "1234", "12/11/2023", "F");
 
-var_dump($_SERVER);
+$connection  = (new Db())->getConnection();
 
-var_dump($_REQUEST);
+$insertStatement = $connection->prepare("
+  INSERT INTO `users` (email, password, birthdate, gender)
+  VALUES (:email, :password, :birthdate, :gender)
+");
+
+$insertResult = $insertStatement->execute(
+    [
+        'email' => "otheremail@gmail.bg",
+        'password' => '0000',
+        'birthdate' => '2000-03-05 09:47:59',
+        'gender' => 'F'
+    ]
+);
+
+$userId = $connection->lastInsertId();
+
+// $user = new User($userId, "otheremail@gmail.bg", ....);
 
 
-// echo $user->getEmail();
-
-// echo User::generateRandomPassword();
-
-// header('Content-type: application/json');
-
-// throw new Exception("something bad happened");
+if (!$insertResult) {
+    var_dump($insertStatement->errorInfo());
+} else {
+    echo $connection->lastInsertId();
+}

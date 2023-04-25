@@ -20,6 +20,20 @@ class UserRequestHandler {
     }
 
     public static function create(array $userData): User {
-        return new User("3", $userData['email'], $userData['password'], $userData['birthday'], $userData['gender']);
+
+        $connection = (new Db())->getConnection();
+        
+        $insertStatement = $connection->prepare("
+            INSERT INTO `users` (email, password, birthdate, gender)
+            VALUES (:email, :password, :birthdate, :gender)
+        ");
+
+        if (!$insertStatement->execute($userData)) {
+            throw new InternalServiceException("Failed to insert user in the db");
+        }
+
+        $userId = $connection->lastInsertId();
+
+        return new User($userId, $userData['email'], $userData['password'], $userData['birthdate'], $userData['gender']);
     }
 }
