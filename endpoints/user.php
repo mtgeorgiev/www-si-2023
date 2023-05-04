@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['id'])) {
 
 // get info for list of users (select * from users)
 elseif ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    $response = UserRequestHandler::getUserList();
+    $response = UserRequestHandler::getUserEmailsList();
 }
 
 // create user (insert into users values)

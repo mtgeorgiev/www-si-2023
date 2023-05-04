@@ -14,7 +14,7 @@ class User implements JsonSerializable {
 
     private $settings;
 
-    public function __construct(string $id, string $email, string $password, string $birthdate, string $gender) {
+    public function __construct(string $id, string $email, ?string $password, string $birthdate, string $gender) {
 
         $this->id = $id;
         $this->email = $email;
@@ -23,7 +23,6 @@ class User implements JsonSerializable {
         $this->gender = $gender;
         $this->settings = new Settings();
     }
-
 
     public function getEmail(): string {
         return $this->email;
@@ -43,6 +42,10 @@ class User implements JsonSerializable {
      */
     public static function generateRandomPassword(): string {
         return "1234";
+    }
+
+    public static function fromArray(array $userData): User {
+        return new User($userData['id'], $userData['email'], null, $userData['birthdate'], $userData['gender']);
     }
 
 }
