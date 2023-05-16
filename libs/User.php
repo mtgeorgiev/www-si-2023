@@ -14,7 +14,7 @@ class User implements JsonSerializable {
 
     private $settings;
 
-    public function __construct(string $id, string $email, ?string $password, string $birthdate, string $gender) {
+    public function __construct(string $id, string $email, ?string $password, ?string $birthdate, string $gender) {
 
         $this->id = $id;
         $this->email = $email;

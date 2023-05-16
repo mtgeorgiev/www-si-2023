@@ -61,5 +61,19 @@ const showUsers = () => {
         });
 }
 
+const register = event => {
+
+    event.preventDefault();
+
+    fetch('./endpoints/user.php', {
+        method: 'POST',
+        body: new FormData(document.getElementById('register-form')),
+    })
+    .then(r => r.json())
+    .then(r => console.log(r));
+}
+
 document.getElementById('container').addEventListener('click', showUsers);
+
+document.getElementById('register-form').addEventListener('submit', register)
 
