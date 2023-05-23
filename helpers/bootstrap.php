@@ -13,7 +13,7 @@ set_exception_handler(function ($exception) {
     } elseif ($exception instanceof InternalServiceException) {
         echo "Internal service error, try again later. Error info: " . $exception->getMessage();
     }  else {
-        echo "Unexpected error occured" . $exception->getMessage();
+        echo "Unexpected error occured " . $exception->getMessage();
     }
 
     $responseCode = $exception->getCode() ?: 500;

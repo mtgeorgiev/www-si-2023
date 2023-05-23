@@ -5,18 +5,34 @@ class SessionRequestHandler {
 
     public static function checkLoginStatus(): array {
 
+        $isLogged = isset($_SESSION['user_id']);
+
         return [
-            'logged' => isset($_SESSION['user_id'])
+            'logged' => $isLogged,
+            'userData' => $isLogged ? [
+                'id' => $_SESSION['user_id'],
+                'email' => $_SESSION['email'],
+            ] : null
         ];
 
     }
 
     public static function login(array $credentials) {
 
-        // check if user and password are correct
-        // password_verify
+        $connection = (new Db())->getConnection();
+        
+        $selectStatement = $connection->prepare("SELECT * FROM `users` WHERE `email` = ?");
+        $selectStatement->execute([$credentials['email']]);
+        $user = $selectStatement->fetch();
 
-        $_SESSION['user_id'] = 1;
+        if ($user && password_verify($credentials['password'], $user['password'])) {
+            
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['email'] = $user['email'];
+
+        } else {
+            throw new Exception('Login failed');
+        }
 
         return [];
     }
